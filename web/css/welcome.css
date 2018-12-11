@@ -1,0 +1,33 @@
+/*-----welcome.jsp-----*/
+.body-welcome {
+    background: url(../images/welcome/innerworld.png);
+    background-size: cover;
+}
+
+.div-welcome {
+    width: 20%;
+    float: right;
+    text-align: center;
+    align-items: center;
+}
+
+.a-welcome {
+    text-decoration: none;
+}
+
+.span-welcome {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+/*-----login.jsp-----*/
+.body-login {
+    background: url(../images/login/login.png);
+    background-size: cover;
+}
+
+.div-login {
+    border: 1px solid red;
+}
