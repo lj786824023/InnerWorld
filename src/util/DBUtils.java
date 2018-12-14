@@ -16,14 +16,16 @@ public class DBUtils {
     private static String password;
 
     static {
-        InputStream is = DBUtils.class.getResourceAsStream("/jdbc.properties");
-        Properties pop = new Properties();
         try {
+            ClassLoader classLoader=DBUtils.class.getClassLoader();
+            InputStream is = classLoader.getResourceAsStream("/jdbc.properties");
+            Properties pop= new Properties();
             pop.load(is);
             driver=pop.getProperty("driver");
             url=pop.getProperty("url");
             username=pop.getProperty("username");
             password=pop.getProperty("password");
+            System.out.println(url);
         } catch (IOException e) {
             e.printStackTrace();
         }
