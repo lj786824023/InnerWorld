@@ -20,6 +20,7 @@ public class UserDaoImpl implements UserDao {
             conn = myDBSource.getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, u.getUsername());
+            rs=pstmt.executeQuery();
             if (!rs.next()) {
                 System.out.println("用户不存在！");
                 return false;
@@ -28,6 +29,7 @@ public class UserDaoImpl implements UserDao {
                 return false;
             } else {
                 System.out.println("登陆成功！");
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -35,6 +37,6 @@ public class UserDaoImpl implements UserDao {
             myDBSource.closeRsPstmt(rs, pstmt);
             myDBSource.backConnection(conn);
         }
-        return true;
+        return false;
     }
 }
