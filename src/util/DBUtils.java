@@ -17,7 +17,7 @@ public class DBUtils {
 
     static {
         try {
-            InputStream is = DBUtils.class.getResourceAsStream("/jdbc.properties");
+            InputStream is = DBUtils.class.getResourceAsStream("/util/jdbc.properties");
             Properties pop = new Properties();
             pop.load(is);
             driver = pop.getProperty("jdbc.driver");
