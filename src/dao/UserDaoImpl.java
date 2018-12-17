@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
             conn = myDBSource.getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, u.getUsername());
-            rs=pstmt.executeQuery();
+            rs = pstmt.executeQuery();
             if (!rs.next()) {
                 System.out.println("用户不存在！");
                 return false;

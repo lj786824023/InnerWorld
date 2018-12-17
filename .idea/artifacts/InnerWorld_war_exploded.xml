@@ -7,6 +7,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="InnerWorld" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="lib" module-name="InnerWorld" />
+        </element>
       </element>
     </root>
   </artifact>
