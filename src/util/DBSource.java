@@ -13,7 +13,7 @@ public class DBSource implements DataSource {
     public Connection getConnection() throws SQLException {
         if (connPool.size() == 0) {
             for (int i = 0; i < 3; i++) {
-                Connection conn = DBUtils.getConnection();
+                Connection conn = DBUtil.getConnection();
                 connPool.add(conn);
             }
         }

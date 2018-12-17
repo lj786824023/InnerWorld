@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class DBUtils {
+public class DBUtil {
     private static String driver;
     private static String url;
     private static String username;
@@ -17,7 +17,7 @@ public class DBUtils {
 
     static {
         try {
-            InputStream is = DBUtils.class.getResourceAsStream("/db.properties");
+            InputStream is = DBUtil.class.getResourceAsStream("/db.properties");
             Properties pop = new Properties();
             pop.load(is);
             driver = pop.getProperty("jdbc.driver");
