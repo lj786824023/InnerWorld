@@ -17,15 +17,13 @@ public class DBUtils {
 
     static {
         try {
-            ClassLoader classLoader=DBUtils.class.getClassLoader();
-            InputStream is = classLoader.getResourceAsStream("/jdbc.properties");
-            Properties pop= new Properties();
+            InputStream is = DBUtils.class.getResourceAsStream("/jdbc.properties");
+            Properties pop = new Properties();
             pop.load(is);
-            driver=pop.getProperty("driver");
-            url=pop.getProperty("url");
-            username=pop.getProperty("username");
-            password=pop.getProperty("password");
-            System.out.println(url);
+            driver = pop.getProperty("jdbc.driver");
+            url = pop.getProperty("jdbc.url");
+            username = pop.getProperty("jdbc.username");
+            password = pop.getProperty("jdbc.password");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,7 +33,7 @@ public class DBUtils {
         Connection conn = null;
         try {
             Class.forName(driver);
-            conn = DriverManager.getConnection(driver,username,password);
+            conn = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,22 +46,23 @@ public class DBUtils {
                 rs.close();
             } catch (SQLException e) {
                 e.printStackTrace();
+            } finally {
+                if (pstmt != null) {
+                    try {
+                        pstmt.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (conn != null) {
+                            try {
+                                conn.close();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
             }
         }
-        if (pstmt != null) {
-            try {
-                pstmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
     }
 }
