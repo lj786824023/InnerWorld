@@ -1,0 +1,9 @@
+/*-----login.jsp-----*/
+.body-login {
+    background: url(../images/login/login.png);
+    background-size: cover;
+}
+
+.div-login {
+    border: 1px solid red;
+}
