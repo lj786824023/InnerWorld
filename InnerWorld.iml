@@ -52,5 +52,15 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library name="js">
+        <ANNOTATIONS>
+          <root url="file://$MODULE_DIR$/web/js" />
+        </ANNOTATIONS>
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
