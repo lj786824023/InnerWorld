@@ -5,7 +5,7 @@
          version="4.0">
     <context-param>
         <param-name>javax.faces.CONFIG_FILES</param-name>
-        <param-value>/c3p0-config.xml</param-value>
+        <param-value>c3p0-config.xml</param-value>
     </context-param>
     <welcome-file-list>
         <welcome-file>welcome.jsp</welcome-file>
@@ -27,5 +27,14 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SelectAllServlet</servlet-name>
+        <servlet-class>servlet.SelectAllServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SelectAllServlet</servlet-name>
+        <url-pattern>/SelectAllServlet</url-pattern>
     </servlet-mapping>
 </web-app>

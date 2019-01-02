@@ -2,21 +2,18 @@ package dao;
 
 import entity.User;
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import util.C3P0Utils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean login(User u) {
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
         User user = null;
         QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
         String sql = "select * from iw_user t1 where t1.username=?";
@@ -40,5 +37,19 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public List<User> SelectAll() {
+        List<User> userList = new ArrayList<User>();
+        QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
+        String sql = "select * from iw_user";
+        Object[] param = {};
+        try {
+            userList = qr.query(sql, new BeanListHandler<User>(User.class),param);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
     }
 }
