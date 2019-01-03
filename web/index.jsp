@@ -25,7 +25,7 @@
     </div>
     <div class="div-left">
         <ul>
-            <li><form action="SelectAllServlet" name="selectForm" method="post"><input type="button" id="select" value="查询" onclick="select_page()"/></form></li>
+            <li><input type="button" id="select" value="查询" onclick="select_page()"/></li>
             <li><input type="button" id="insert" value="添加" onclick="insert_page()"/></li>
             <li><input type="button" id="update" value="修改" onclick=""/></li>
             <li><input type="button" id="delete" value="删除" onclick=""/></li>

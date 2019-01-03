@@ -10,20 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-@WebServlet(name = "SelectAllServlet")
-public class SelectAllServlet extends HttpServlet {
+@WebServlet(name = "UserDeleteServlet")
+public class UserDeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDao userDao = new UserDaoImpl();
-        List<User> userList = new ArrayList<User>();
-        userList = userDao.SelectAll();
-        request.getSession().setAttribute("userList",userList);
-        response.sendRedirect("index.jsp");
+        System.out.println("dopost");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        UserDao userDao = new UserDaoImpl();
+        User u = new User();
+        u.setUsername(request.getParameter("username"));
+        if (userDao.delete(u) > 0) {
+            System.out.println("删除成功");
+        } else {
+            System.out.println("删除失败");
+        }
+        response.sendRedirect("select_page.jsp");
     }
 }

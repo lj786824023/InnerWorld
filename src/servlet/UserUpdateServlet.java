@@ -11,33 +11,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(name = "LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "UserUpdateServlet")
+public class UserUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao userDao = new UserDaoImpl();
         User user = new User();
         Map<String, String[]> parameterMap = request.getParameterMap();
         try {
-            BeanUtils.populate(user,parameterMap);
+            BeanUtils.populate(user, parameterMap);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(user.toString());
-        if(userDao.login(user)){
-            System.out.println("登陆成功");
-            response.sendRedirect("index.jsp");
-        }else{
-            System.out.println("登陆失败");
-            response.sendRedirect("login.jsp");
+        if (userDao.update(user) == 1) {
+            System.out.println("用户更新失败");
+            //JOptionPane.showMessageDialog(null,"用户更新成功");
+        } else {
+            //JOptionPane.showMessageDialog(null,"用户更新失败");
+            System.out.println("用户更新失败");
         }
+
+        response.sendRedirect("select_page.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+
     }
 }

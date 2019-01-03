@@ -11,33 +11,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(name = "LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "UserInsertServlet")
+public class UserInsertServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao userDao = new UserDaoImpl();
-        User user = new User();
+        User u = new User();
         Map<String, String[]> parameterMap = request.getParameterMap();
         try {
-            BeanUtils.populate(user,parameterMap);
+            BeanUtils.populate(u, parameterMap);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(user.toString());
-        if(userDao.login(user)){
-            System.out.println("登陆成功");
-            response.sendRedirect("index.jsp");
-        }else{
-            System.out.println("登陆失败");
-            response.sendRedirect("login.jsp");
+        int update = userDao.insert(u);
+        if (update > 0) {
+            System.out.println("添加成功");
+        } else {
+            System.out.println("添加失败");
         }
+        response.sendRedirect("insert_page.jsp");
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+
     }
 }
