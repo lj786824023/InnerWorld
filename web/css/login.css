@@ -5,5 +5,8 @@
 }
 
 .div-login {
-    border: 1px solid red;
+    border: 1px solid gray;
+    width: 20%;
+    margin: 0 auto;
+    background: lightgrey;
 }

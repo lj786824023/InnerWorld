@@ -19,7 +19,7 @@
 <body>
 <div class="">
     <form action="UserUpdateServlet" method="post">
-        <table border="1">
+        <table class="">
             <tr>
                 <td>用户名</td>
                 <td>密码</td>

@@ -27,7 +27,6 @@ public class LoginServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(user.toString());
         if(userDao.login(user)){
             System.out.println("登陆成功");
             response.sendRedirect("index.jsp");
